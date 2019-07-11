@@ -1,6 +1,7 @@
-//Imports 
+//Imports
+const server = express(); 
 const express = require('express');
-const server = express();
+
 
 server.use(express.json())
 
