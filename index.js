@@ -1,23 +1,9 @@
 var express = require('express');
 const server = require('./api/server.js');
-var app = express();
-var jwt = require('express-jwt');
-var jwks = require('jwks-rsa');
+const jwtCheck = require('./auth/jwtCheck')
 
 var port = process.env.PORT || 8080;
 
-
-var jwtCheck = jwt({
-      secret: jwks.expressJwtSecret({
-          cache: true,
-          rateLimit: true,
-          jwksRequestsPerMinute: 5,
-          jwksUri: 'https://plan-my-day.auth0.com/.well-known/jwks.json'
-    }),
-    audience: 'https://plan-my-day',
-    issuer: 'https://plan-my-day.auth0.com/',
-    algorithms: ['RS256']
-});
 
 server.use(jwtCheck);
 
