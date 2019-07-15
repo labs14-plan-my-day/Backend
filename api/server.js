@@ -3,7 +3,7 @@ const express = require('express');
 const server = express(); 
 const cors = require('cors')
 
-const DummyRouter = require('./dummy/dummy-router.js')
+const DummyRouter = require('../dummy/dummy-router.js')
 
 
 server.use(cors())
