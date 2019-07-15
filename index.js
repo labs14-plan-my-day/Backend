@@ -1,3 +1,4 @@
+
 var express = require('express');
 const server = require('./api/server.js');
 const jwtCheck = require('./auth/jwtCheck')
@@ -12,4 +13,3 @@ server.get('/authorized', (req, res)=>{
 });
 
 server.listen(port, () => console.log(`\nAPI running on port ${port}\n`));
-
