@@ -14,7 +14,8 @@ exports.up = function(knex, Promise) {
         tbl.string('name', 200).notNullable()
         tbl.integer('status').defaultTo(1).notNullable();
         tbl.string('date').notNullable()
-        tbl.string('time', 128).notNullable();
+        tbl.string('start_time', 128).notNullable();
+        tbl.string('end_time', 128).notNullable();
         tbl.text('description',300);
         tbl.integer('importance', 128).defaultTo(2).notNullable();
         tbl.boolean('bookmark').defaultTo(false).notNullable();
