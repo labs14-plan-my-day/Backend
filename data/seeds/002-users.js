@@ -5,8 +5,8 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('PMD-users').insert([
-        {id: 1, username: 'test', password: 'test', is_admin: false},
-        {username: 'admin', password: '$2a$04$wcBoZnqQKhUC86PhxZ5rSOJUFOaIZlZttmXR2zNzIGpJk4MyNih4e', is_admin: 1},
+        {id: 1, email:'test@test.com',username: 'test',is_admin: false},
+        {email:'tommyexar@gmail.com', username: 'admin', is_admin: 1},
 
       ]);
     });
