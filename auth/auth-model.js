@@ -24,5 +24,5 @@ function remove(id) {
 }
 
 function findByEmail(email){
-    return db('PMD-users').where({email:email}).first()
+    return db('PMD-users').where({ email }).first()
 }

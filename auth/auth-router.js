@@ -17,46 +17,54 @@ router.get('/:id', (req, res) => {
             if (user) {
                 res.status(200).json(user)
             } else {
-                res.status(404).json({ message: 'not found' })
+                res.status(404).json({ message: 'not found by id' })
             }
         }).catch(err => {
-            res.status(500).json({ message: 'error getting user email' })
+            res.status(500).json({ message: 'error getting user id' })
         })
 })
 
-router.get('/:email', (req, res) => {
+router.get('/email/:email', (req, res) => {
     Users.findByEmail(req.params.email)
         .then(user => {
             if (user) {
                 res.status(200).json(user)
             } else {
-                res.status(404).json({ message: 'not found' })
+                res.status(404).json({ message: 'not found by email' })
             }
         }).catch(err => {
-            res.status(500).json({ message: 'error getting user email' })
+            res.status(500).json({ message: 'error getting user id' })
         })
 })
 
+router.post('/a/:email', async (req, res) => {
+    // let { user, email } = req.body
+    console.log(req.params.email)
+
+    try {
+        const user = await Users.findByEmail(req.params.email)
+
+        if(user){
+            res.status(200).json(user)
+        } else {
+            const [newUserId] = await Users.add({...req.body})
+            const newUser = await Users.findBy(newUserId)
+            res.status(200).json(newUser)
+        }
+    } catch({message}){
+        res.status(500).json({message})
+    }
+})
+
 router.post('/register', (req, res) => {
-    let {user, email} = req.body
+    let user = req.body
     Users.add(user)
         .then(saved => {
             res.status(201).json(saved)
-        }).catch(err => {
-            if (error.errno == 19) {
-                res.status(405).json({ messaage: "username in use" })
-
-            } else {
-                res.status(500).json(err)
-            }
+        }).catch(error => {
+            res.status(500).json(error)
 
         })
-
-    Users.findBy({ email })
-    .first()
-    .then(user =>{
-        res.status(200).json({ user})
-    })
 })
 
 router.post('/login', (req, res) => {
@@ -82,7 +90,7 @@ router.delete('/:id', (req, res) => {
             res.status(200).json(user);
         })
         .catch(error => {
-            res.status(500).json({ message: 'We ran into an error deleting the uesr' });
+            res.status(500).json({ message: 'We ran into an error deleting the user' });
         });
 });
 
@@ -99,4 +107,5 @@ function generateToken(user) {
 
     return jwt.sign(payload, secret.jwtSecret, options);
 }
+
 module.exports = router;
