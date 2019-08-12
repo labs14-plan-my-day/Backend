@@ -24,10 +24,12 @@ function findByUserId(userId) {
         "t.name",
         "t.status",
         "t.date",
-        "t.time",
+        "t.start_time",
+        "t.end_time",
         "t.description",
         "t.importance",
-        "t.bookmark"
+        "t.bookmark",
+        "t.alert"
       )
       .where({ "u.id": userId })
       .distinct("t.id")

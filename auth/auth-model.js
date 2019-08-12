@@ -1,7 +1,7 @@
 const db = require('../data/dbConfig.js')
 
 module.exports = {
-    add, find, findBy
+    add, find, findBy, findByEmail, remove
 }
 
 function find() {
@@ -13,5 +13,16 @@ function add(user) {
 }
 
 function findBy(id) {
-    return db('PMD-users').where({ username: id }).first()
+    return db('PMD-users').where({ id }).first()
+}
+
+
+function remove(id) {
+    return db('PMD-users')
+        .where({ id })
+        .del();
+}
+
+function findByEmail(email){
+    return db('PMD-users').where({ email }).first()
 }
