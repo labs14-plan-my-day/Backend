@@ -37,12 +37,12 @@ router.get('/email/:email', (req, res) => {
         })
 })
 
-router.post('/a/:email', async (req, res) => {
+router.post('/a', async (req, res) => {
     // let { user, email } = req.body
-    console.log(req.params.email)
+    console.log(req.body)
 
     try {
-        const user = await Users.findByEmail(req.params.email)
+        const user = await Users.findByEmail(req.body.email)
 
         if(user){
             res.status(200).json(user)
