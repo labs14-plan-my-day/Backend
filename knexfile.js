@@ -1,5 +1,7 @@
 // Update with your config settings.
+
 const dbConnection = process.env.DATABASE_URL
+
 module.exports = {
 
   development: {
@@ -15,22 +17,6 @@ module.exports = {
     }
   },
 
-  testing: {
-    client: 'pg',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  },
-
   production: {
     client: 'pg',
     connection: dbConnection,
@@ -40,6 +26,9 @@ module.exports = {
     },
     migrations: {
       tableName: 'knex_migrations'
+    },
+    seeds:{
+      directory:'./data/seeds'
     }
   }
 
