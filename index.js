@@ -1,4 +1,3 @@
-
 const server = require('./api/server.js');
 const jwtCheck = require('./auth/jwtCheck')
 
