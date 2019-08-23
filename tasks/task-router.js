@@ -4,9 +4,10 @@ const Tasks = require('./task-model')
 
 
 router.get('/', (req, res) => {
-    Tasks.find().then(tasks => {
-        res.json({ tasks })
-    }).catch(err => res.send(err))
+    Tasks.find()
+        .then(tasks => {
+            res.json({ tasks })
+        }).catch(err => res.send(err))
 })
 
 router.get('/comment/:id', (req, res) => {
@@ -59,7 +60,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', async (req, res) => {
     try {
-        const updated = await Tasks.update(req.params.id, req.body );
+        const updated = await Tasks.update(req.params.id, req.body);
         if (updated) {
             res.status(200).json(updated);
         } else {
