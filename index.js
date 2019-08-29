@@ -5,7 +5,7 @@ const axios = require('axios')
 
 
 const bot = new SlackBot({
-    token: 'xoxb-689980001927-686756441314-VVHHXPq3CCICt8SqtQ0Pmn0o',
+    token: 'xoxb-689980001927-686756441314-0SYXKJztNPZBtShmBskbN8uy',
     name: 'Plan My Day'
 
 })
@@ -58,7 +58,7 @@ function sayHi() {
 }
 
 function getTaskList() {
-    axios.get('https://plan-my-dayapp.herokuapp.com/tasks/user/7')
+    axios.get('https://plan-my-dayapp.herokuapp.com/tasks/user/3')
         .then(res => {
             let tasks = res.data
             console.log(tasks)
