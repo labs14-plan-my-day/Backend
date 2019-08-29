@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
           .notNullable()
           .references('id')
           .inTable('PMD-users')
-          .onDelete('RESTRICT')
+          .onDelete('CASCADE')
           .onUpdate('CASCADE');
 
         tbl.string('name', 200).notNullable()

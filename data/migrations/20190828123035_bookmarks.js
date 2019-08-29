@@ -1,6 +1,6 @@
 
 exports.up = function(knex, Promise) {
-    return knex.schema.createTable('history', tbl =>{
+    return knex.schema.createTable('bookmarks', tbl =>{
         tbl.increments();
         tbl
           .integer('user_id')
@@ -24,6 +24,6 @@ exports.up = function(knex, Promise) {
   };
   
   exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists('history')
+    return knex.schema.dropTableIfExists('bookmarks')
   };
   

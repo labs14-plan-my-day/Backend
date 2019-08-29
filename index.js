@@ -5,7 +5,7 @@ const axios = require('axios')
 
 
 const bot = new SlackBot({
-    token: 'xoxb-689980001927-686756441314-SBjtYiyWrluCl8ztb9RgVBfr',
+    token: 'xoxb-689980001927-686756441314-VVHHXPq3CCICt8SqtQ0Pmn0o',
     name: 'Plan My Day'
 
 })
@@ -23,6 +23,7 @@ bot.on('error', (err) => console.log(err))
 
 //message
 bot.on('message', (data) => {
+    console.log(data)
     if (data.type !== 'message') {
         return;
     }
@@ -30,31 +31,50 @@ bot.on('message', (data) => {
     handleMessage(data.text);
 })
 
+
+
 function handleMessage(message) {
-    if (message.includes('tasks')) {
-        getTaskList()
-    } else if (message.includes('help')){
-        runHelp();
+    if (message.includes('@UL6N8CZ98')) {
+            if (message.includes('tasks')) {
+                getTaskList()
+            }
+            else if (message.includes('hello')) {
+                sayHi()
+            }
+            else if (message.includes('help')) {
+                runHelp();
+            }
     }
+
+}
+
+
+function sayHi() {
+    const params = {
+        icon_emoji: ':smile:'
+    }
+
+    bot.postMessageToChannel('general', `Hello`, params)
 }
 
 function getTaskList() {
-    axios.get('https://plan-my-dayapp.herokuapp.com/tasks/2')
+    axios.get('https://plan-my-dayapp.herokuapp.com/tasks/user/7')
         .then(res => {
-            let tasks = res.data.tasks
+            let tasks = res.data
             console.log(tasks)
 
             var params = {
                 icon_emoji: ':cat:'
             }
-            bot.postMessageToChannel('gneral', `These are your tasks ${tasks}`, params)
+            bot.postMessageToChannel('general', `These are your tasks for today: ${tasks.map((task)=>{
+                return(` ${task.name} `)
+            })}`, params)
         })
-        // .catch(err =>{
-        //     res.send(err)
-        // })
+    // .catch(err =>{
+    //     res.send(err)
+    // })
 }
 
-//Help 
 function runHelp() {
     const params = {
         icon_emoji: ':question:'

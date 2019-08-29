@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
           .notNullable()
           .references('id')
           .inTable('tasks')
-          .onDelete('RESTRICT')
+          .onDelete('CASCADE')
           .onUpdate('CASCADE');
 
         tbl.string('commentor', 200).notNullable();

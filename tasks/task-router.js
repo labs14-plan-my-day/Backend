@@ -29,7 +29,10 @@ router.get('/user/:id', (req, res) => {
         .then(task => {
             if (task) {
                 res.status(200).json(task)
-            } else {
+            }
+             else if (!task){
+                 res.status(200).json({message:"no tasks for the given user id"})
+             } else {
                 res.status(404).json({ message: 'not found' })
             }
         }).catch(err => {
