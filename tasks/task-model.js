@@ -46,10 +46,16 @@ function findByUserId(userId) {
       .update(changes);
   }
   
+  // function remove(id) {
+  //   return db("tasks")
+  //     .where({ id })
+  //     .del();
+  // }
+
   function remove(id) {
-    return db("tasks")
+    let deleted = db("tasks")
       .where({ id })
-      .del();
+      return db('history').insert(deleted)
   }
   
   function findById(id) {

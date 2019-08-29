@@ -4,9 +4,10 @@ const Tasks = require('./task-model')
 
 
 router.get('/', (req, res) => {
-    Tasks.find().then(tasks => {
-        res.json({ tasks })
-    }).catch(err => res.send(err))
+    Tasks.find()
+        .then(tasks => {
+            res.json({ tasks })
+        }).catch(err => res.send(err))
 })
 
 router.get('/comment/:id', (req, res) => {
@@ -28,7 +29,10 @@ router.get('/user/:id', (req, res) => {
         .then(task => {
             if (task) {
                 res.status(200).json(task)
-            } else {
+            }
+             else if (!task){
+                 res.status(200).json({message:"no tasks for the given user id"})
+             } else {
                 res.status(404).json({ message: 'not found' })
             }
         }).catch(err => {
@@ -59,7 +63,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', async (req, res) => {
     try {
-        const updated = await Tasks.update(req.params.id, req.body );
+        const updated = await Tasks.update(req.params.id, req.body);
         if (updated) {
             res.status(200).json(updated);
         } else {
