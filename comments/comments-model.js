@@ -11,12 +11,12 @@ function find(){
 }
 
 function add(task) {
-    return db("tasks").insert(task);
+    return db("comments").insert(task);
   }
   
 
   function remove(id) {
-    return db("tasks")
+    return db("comments")
       .where({ id })
       .del();
   }
