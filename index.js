@@ -5,7 +5,7 @@ const axios = require('axios')
 
 
 const bot = new SlackBot({
-    token: 'xoxb-689980001927-686756441314-0SYXKJztNPZBtShmBskbN8uy',
+    token: 'xoxb-689980001927-686756441314-cXixELUSSVyTowqc5uCHtrSm',
     name: 'Plan My Day'
 
 })
