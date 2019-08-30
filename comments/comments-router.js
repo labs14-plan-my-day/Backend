@@ -30,6 +30,19 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+router.get('/:id', (req, res) => {
+    Comments.findByTaskId(req.params.id)
+        .then(comment => {
+            if (comment) {
+                res.status(200).json(comment)
+            } else {
+                res.status(404).json({ message: 'comment not found' })
+            }
+        }).catch(err => {
+            res.status(500).json({ message: 'error getting comment' })
+        })
+})
+
 
 
 module.exports = router
