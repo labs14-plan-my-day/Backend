@@ -3,9 +3,6 @@ const jwtCheck = require('./auth/jwtCheck')
 const axios = require('axios')
 
 
-
-
-
 var port = process.env.PORT || 8080;
 
 
