@@ -7,6 +7,7 @@ exports.up = function(knex) {
         .unique();
       users.string('username', 128).notNullable();
       users.boolean('is_admin').defaultTo(false).notNullable();
+      users.string('slackID').unique()
     });
   };
   

@@ -24,6 +24,24 @@ router.get('/comment/:id', (req, res) => {
 })
 
 
+router.get('/slack/:id', async (req, res)=>{
+    try{
+        const slack = await Tasks.findBySlackId(req.params.id) 
+        console.log(slack.id)
+        const endpoint = `/user/${slack.id}`
+        console.log(endpoint)
+        if(slack){
+            const test = await Tasks.findByUserId(slack.id)
+            res.status(200).json(test)
+        }else {
+            console.log('no')
+        }
+    } catch({message}){
+        res.status(500).json(message)
+    }
+})
+
+
 router.get('/user/:id', (req, res) => {
     Tasks.findByUserId(req.params.id)
         .then(task => {

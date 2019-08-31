@@ -7,13 +7,18 @@ module.exports = {
     findByUserId,
     remove,
     update,
-    findCommentById
+    findCommentById,
+    findBySlackId
 }
 
 function find(){
     return db('tasks')
 }
 
+function findBySlackId(slackID){
+  return db('PMD-users').where({ slackID }).first()
+    
+}
 
 function findByUserId(userId) {
     return db("tasks as t")
