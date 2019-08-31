@@ -94,6 +94,19 @@ router.delete('/:id', (req, res) => {
         });
 });
 
+router.put('/:id', async (req, res) => {
+    try {
+        const updated = await Users.update(req.params.id, req.body);
+        if (updated) {
+            res.status(200).json(updated);
+        } else {
+            res.status(404).json({ message: 'User ID not found' });
+        }
+    } catch (error) {
+        res.status(500).json("Error updating users");
+    }
+});
+
 
 function generateToken(user) {
     const payload = {

@@ -1,7 +1,7 @@
 const db = require('../data/dbConfig.js')
 
 module.exports = {
-    add, find, findBy, findByEmail, remove
+    add, find, findBy, findByEmail, remove,update
 }
 
 function find() {
@@ -26,3 +26,9 @@ function remove(id) {
 function findByEmail(email){
     return db('PMD-users').where({ email }).first()
 }
+
+function update(id, changes) {
+    return db("PMD-users")
+      .where({ id })
+      .update(changes);
+  }
